@@ -434,6 +434,25 @@ class GeoAxes(matplotlib.axes.Axes):
                                                       resolution, **kwargs)
         return self.add_feature(feature)
 
+    def boundaries(self, resolution='110m', color='black', **kwargs):
+        """
+        Add boundaries **outlines** to the current axes from the Natural Earth
+        "admin_0_boundary_lines_land" shapefile collection.
+
+        Parameters
+        ----------
+        resolution
+            A named resolution to use from the Natural Earth
+            dataset. Currently can be one of "110m", "50m", and "10m".
+
+        """
+        kwargs['edgecolor'] = color
+        kwargs['facecolor'] = 'none'
+        feature = cartopy.feature.NaturalEarthFeature('physical',
+                                                      'admin_0_boundary_lines_land',
+                                                      resolution, **kwargs)
+        return self.add_feature(feature)
+
     def tissot(self, rad_km=500, lons=None, lats=None, n_samples=80, **kwargs):
         """
         Add Tissot's indicatrices to the axes.
